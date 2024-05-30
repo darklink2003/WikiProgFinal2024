@@ -1,7 +1,5 @@
 <?php
-
-//Podría haber código PHP pero se vería en todas las secciones.
-
+// Podría haber código PHP pero se vería en todas las secciones.
 ?>
 
 <!DOCTYPE html>
@@ -16,25 +14,9 @@
   <meta name="author" content="">
 
   <!-- Le styles -->
-  <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/estilo.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-
-  <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <![endif]-->
-
-  <!-- Le fav and touch icons -->
-  <link rel="shortcut icon" href="https://getbootstrap.com/2.0.2/assets/ico/favicon.ico">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114"
-    href="https://getbootstrap.com/2.0.2/assets/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72"
-    href="https://getbootstrap.com/2.0.2/assets/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed"
-    href="https://getbootstrap.com/2.0.2/assets/ico/apple-touch-icon-57-precomposed.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VGEB9L78T0"></script>
@@ -42,53 +24,56 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-VGEB9L78T0');
   </script>
-
 </head>
 
 <body>
 
   <!-- Barra de navegación -->
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="#">Project name</a>
-        <div class="nav-collapse collapse" style="height: 0px;">
-          <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="controlador.php?seccion=seccion1">About</a></li>
-            <li><a href="controlador.php?seccion=seccion2">Contact</a></li>
-            <li><a href="controlador.php?seccion=seccion3">Quien soy yo</a></li>
-            <li><a href="controlador.php?seccion=seccion4">Video</a></li>
-            <li><a href="https://www.sena.edu.co" target="blank">Ir al Sena</a></li>
-            <li><a href="controlador.php?seccion=seccion5">registro</a></li>
-            <li><a href="controlador.php?seccion=seccion6">Imprimir</a></li>
-          </ul>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Project name</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="controlador.php?seccion=seccion1">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="controlador.php?seccion=seccion2">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="controlador.php?seccion=seccion3">Quien soy yo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="controlador.php?seccion=seccion4">Video</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.sena.edu.co" target="_blank">Ir al Sena</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="controlador.php?seccion=seccion5">Registro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="controlador.php?seccion=seccion6">Imprimir</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+  </nav>
 
-  <!-- Se declara un contenedor fila y después un contenedor columna. LAs columnas deben sumar 12, según la rejilla Bootstrap. -->
-  <div class="container">
-
+  <!-- Se declara un contenedor fila y después un contenedor columna. Las columnas deben sumar 12, según la rejilla Bootstrap. -->
+  <div class="container" style="margin-top: 80px;">
     <?php
-
-    include ($seccion . ".php");
-
+    include($seccion . ".php");
     ?>
-
   </div>
-
-
 
   <div class="container">
     <footer>
@@ -96,25 +81,9 @@
     </footer>
   </div>
 
-  <!-- Le javascript
-    ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap-transition.js"></script>
-  <script src="js/bootstrap-alert.js"></script>
-  <script src="js/bootstrap-modal.js"></script>
-  <script src="js/bootstrap-dropdown.js"></script>
-  <script src="js/bootstrap-scrollspy.js"></script>
-  <script src="js/bootstrap-tab.js"></script>
-  <script src="js/bootstrap-tooltip.js"></script>
-  <script src="js/bootstrap-popover.js"></script>
-  <script src="js/bootstrap-button.js"></script>
-  <script src="js/bootstrap-collapse.js"></script>
-  <script src="js/bootstrap-carousel.js"></script>
-  <script src="js/bootstrap-typeahead.js"></script>
-
-
-
+  <!-- Le javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 
 </html>

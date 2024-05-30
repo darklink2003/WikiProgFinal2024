@@ -3,7 +3,7 @@
  $usuario = $_GET['usuario'];
  $correo = $_GET['correo'];
  $contraseña = $_GET['contraseña'];
- $rango_id = 1;
+ $rango_id = 2;
  
  include("login.php");
  
