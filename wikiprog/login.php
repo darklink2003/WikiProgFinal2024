@@ -1,8 +1,8 @@
 <?php
  class login {
-    public static function registrar( $documento , $nombre, $apellido,  $fecha_nac){
-        $conexion = mysqli_connect('localhost', 'root', '', 'db_base28_05');
-        $sql= "INSERT INTO tb_usuarios (documento, nombre, apellido, fecha_nac) VALUES ('$documento', '$nombre', '$apellido', '$fecha_nac')";
+    public static function registrar( $usuario,$correo,$contraseña,$rango_id){
+        $conexion = mysqli_connect('localhost', 'root', '', 'wikiprog');
+        $sql= "INSERT INTO usuario (usuario, correo, contraseña, rango_id) VALUES ('$usuario','$correo','$contraseña','$rango_id')";
         $consulta = $conexion ->query($sql);
         if($consulta){
             header('location: controlador.php?seccion=seccion5');

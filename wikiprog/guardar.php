@@ -1,12 +1,12 @@
 <?php
 
- $documento = $_GET['doc'];
- $nombre = $_GET['nom'];
- $apellido = $_GET['ape'];
- $fecha_nac = $_GET['fecha'];
-
+ $usuario = $_GET['usuario'];
+ $correo = $_GET['correo'];
+ $contraseña = $_GET['contraseña'];
+ $rango_id = 1;
+ 
  include("login.php");
  
- login::registrar($documento, $nombre, $apellido, $fecha_nac);
+ login::registrar($usuario, $correo, $contraseña, $rango_id);
  
  
