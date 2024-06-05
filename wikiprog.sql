@@ -160,7 +160,7 @@ CREATE TABLE `curso` (
   PRIMARY KEY (`curso_id`),
   KEY `categoria_id` (`categoria_id`),
   CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`categoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,8 +169,38 @@ CREATE TABLE `curso` (
 
 LOCK TABLES `curso` WRITE;
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-INSERT INTO `curso` VALUES (20,'html','programar',1,'2024-06-04 16:32:37',0,0),(21,'php','programar',2,'2024-06-04 16:32:58',0,0),(22,'css','estilo',3,'2024-06-04 16:33:13',0,0);
+INSERT INTO `curso` VALUES (20,'html','programar',1,'2024-06-04 16:32:37',0,0),(21,'php','PHP es un lenguaje de programación interpreta',2,'2024-06-04 16:32:58',0,0),(22,'css','estilo',3,'2024-06-04 16:33:13',0,0),(23,'jax','union ',2,'2024-06-04 17:11:49',0,0);
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `inscripción`
+--
+
+DROP TABLE IF EXISTS `inscripción`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inscripción` (
+  `inscripción_id` int(11) NOT NULL AUTO_INCREMENT,
+  `curso_id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `fecha_registro` datetime NOT NULL,
+  PRIMARY KEY (`inscripción_id`),
+  KEY `curso_id` (`curso_id`),
+  KEY `usuario_id` (`usuario_id`),
+  CONSTRAINT `inscripción_ibfk_1` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`curso_id`),
+  CONSTRAINT `inscripción_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inscripción`
+--
+
+LOCK TABLES `inscripción` WRITE;
+/*!40000 ALTER TABLE `inscripción` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inscripción` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -189,7 +219,7 @@ CREATE TABLE `leccion` (
   PRIMARY KEY (`leccion_id`),
   KEY `curso_id` (`curso_id`),
   CONSTRAINT `leccion_ibfk_1` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`curso_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +228,7 @@ CREATE TABLE `leccion` (
 
 LOCK TABLES `leccion` WRITE;
 /*!40000 ALTER TABLE `leccion` DISABLE KEYS */;
-INSERT INTO `leccion` VALUES (16,20,'inicio',_binary 'asdasd','2024-06-04 16:32:37'),(17,20,'diseñar',_binary 'sadadasd','2024-06-04 16:32:37'),(18,21,'por que',_binary 'asdfafq','2024-06-04 16:32:58'),(19,22,'biblia',_binary 'fqwer','2024-06-04 16:33:13');
+INSERT INTO `leccion` VALUES (16,20,'inicio',_binary 'asdasd','2024-06-04 16:32:37'),(17,20,'diseñar',_binary 'sadadasd','2024-06-04 16:32:37'),(18,21,'por que',_binary 'asdfafq','2024-06-04 16:32:58'),(19,22,'biblia',_binary 'fqwer','2024-06-04 16:33:13'),(20,23,'por que',_binary '4646456','2024-06-04 17:11:49');
 /*!40000 ALTER TABLE `leccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,7 +355,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`usuario_id`),
   KEY `rango_id` (`rango_id`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rango_id`) REFERENCES `rango` (`rango_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,6 +364,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (13,'julio','julio@gmail.com','soy un programador','$2y$10$op1Fz3xK.R2t9WTdqXqG2eD7aGw5454.pb9p3.',1,'2024-06-04 21:17:56'),(14,'marzo','marzo@gmail.com','marzo','marzo2000',1,'2024-06-04 21:20:05'),(15,'keiner','keiner@gmail.com','puto','keinerputo',1,'2024-06-05 12:29:31');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -395,4 +426,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-04 11:40:24
+-- Dump completed on 2024-06-05  7:32:12
