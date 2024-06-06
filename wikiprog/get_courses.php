@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta para obtener cursos
-$sql = "SELECT titulo_curso, descripcion FROM curso";
+$sql = "SELECT curso_id, titulo_curso, descripcion FROM curso";
 $result = $conn->query($sql);
 
 $courses = array();
