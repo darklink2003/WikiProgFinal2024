@@ -8,7 +8,7 @@ if (!$conexion) {
 }
 
 // Obtener el curso_id de la solicitud GET
-$curso_id = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 23;
+$curso_id = isset($_GET['curso_id']) ? intval($_GET['curso_id']) : 0;
 
 // Preparar la consulta para obtener las lecciones asociadas a un curso_id específico
 $query = "SELECT * FROM leccion WHERE curso_id = ?";

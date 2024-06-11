@@ -14,7 +14,7 @@
   <meta name="author" content="">
 
   <!-- Le styles -->
-  <link href="css/estilo.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -73,15 +73,15 @@
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="controlador.php?seccion=seccion1">Tu Perfil​</a></li>
-              <li><a class="dropdown-item" href="archivos.html">Tu Nube</a></li>
+              <li><a class="dropdown-item" href="controlador.php?seccion=seccion9">Tu Perfil​</a></li>
+              <li><a class="dropdown-item" href="controlador.php?seccion=seccion12">Tu Nube</a></li>
               <li><a class="dropdown-item" href="video.html">Tus Cursos</a></li>
               <li><a class="dropdown-item" href="controlador.php?seccion=seccion5"><b>Registro</b></a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="actualizar_perfil.html">Configuración</a></li>
-              <li><a class="dropdown-item" href="ayuda.html">Ayuda</a></li>
+              <li><a class="dropdown-item" href="controlador.php?seccion=seccion10">Configuración</a></li>
+              <li><a class="dropdown-item" href="controlador.php?seccion=seccion11">Ayuda</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
@@ -116,6 +116,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
+
+
+
+
 </body>
 
 </html>
