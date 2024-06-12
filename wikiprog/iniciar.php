@@ -15,21 +15,23 @@ if ($conn->connect_error) {
 }
 
 // Obtener los datos del formulario
-$user = $_POST['username'];
-$pass = $_POST['password'];
+$user = $_POST['username'] ?? '';
+$pass = $_POST['password'] ?? '';
 
 // Proteger contra inyecciones SQL
 $user = $conn->real_escape_string($user);
 $pass = $conn->real_escape_string($pass);
 
 // Consulta para verificar el usuario
-$sql = "SELECT * FROM usuario WHERE usuario = '$user' AND contraseña = '$pass'";
+$sql = "SELECT usuario_id FROM usuario WHERE usuario = '$user' AND contraseña = '$pass'";
 $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
+if ($result && $result->num_rows > 0) {
     // Usuario encontrado, iniciar sesión
-    $_SESSION['username'] = $user;
-    header("Location: index.php"); // Redirigir a la página de bienvenida
+    $row = $result->fetch_assoc();
+    $_SESSION['usuario_id'] = $row['usuario_id'];
+    header("Location: controlador.php?seccion=seccion1&usuario_id=" . $_SESSION['usuario_id']);
+    exit();
 } else {
     // Usuario no encontrado, mostrar mensaje de error
     echo "Nombre de usuario o contraseña incorrectos";

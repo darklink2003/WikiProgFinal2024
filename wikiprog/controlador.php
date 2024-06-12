@@ -1,16 +1,13 @@
 <?php
+session_start();
 
-  $seccion = "seccion1"; //Sección por defecto.
+$seccion = "seccion2"; // Sección por defecto.
+$usuario_id = $_SESSION['usuario_id'] ?? '';
 
-  if( isset( $_GET[ 'seccion' ] ) ){
-    $seccion = $_GET[ 'seccion' ];
-  }
+if (isset($_GET['seccion'])) {
+    $seccion = $_GET['seccion'];
+}
 
-  //echo $seccion;
-
-  include( "plantilla.php" );
-
- 
-
-
+// Incluye la plantilla y pasa el usuario_id
+include("plantilla.php");
 ?>

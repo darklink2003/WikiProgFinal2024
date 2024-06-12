@@ -1,11 +1,11 @@
 <div class="contenedor_descripcion">
     <form action="guardar_curso.php" method="POST">
-        <div class="row" style="height:100px;background-color: #1a1924;">
-            <div class="col-md-6 d-flex justify-content-center align-items-center">
-                <input type="text" name="titulo_curso" placeholder="Título del curso" required class="form-control" style="background-color: #1a1924; color: white; border-radius: 10px;">
-                <input type="text" name="descripcion" placeholder="Descripción" class="form-control" style="margin-left:10px; background-color: #1a1924; color: white; border-radius: 10px;" required>
+        <div class="row" style="height:100px;background-color: #1a1924; border-radius:15px;">
+            <div class="col-md-8 d-flex justify-content-center align-items-center">
+                <input type="text" name="titulo_curso" placeholder="Título del curso" required class="form-control" style=" border-radius: 10px;">
+                <input type="text" name="descripcion" placeholder="Descripción" class="form-control" style="margin-left:10px; border-radius: 10px;" required>
             </div>
-            <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <select name="categoria" required class="form-select" style="background-color: #1a1924; color: white; border-radius: 10px;">
                     <?php
                     // Conexión a la base de datos
@@ -29,7 +29,7 @@
                     ?>
                 </select>
                 <!-- agrega un boton para agregar mas categorias para los cursos -->
-                <button type="button" onclick="eliminarCurso()" class="btn btn-danger" style="border-radius: 10px;">Eliminar curso</button>
+                <button type="button" onclick="eliminarCurso()" class="btn btn-danger" style="border-radius: 10px;height:40%;width:90%;margin-left:10px;">Eliminar curso</button>
             </div>
         </div>
 

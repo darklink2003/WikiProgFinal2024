@@ -75,9 +75,9 @@ function cargarLecciones(cursoId) {
 function agregarLeccion() {
   const leccionesDiv = document.getElementById('lecciones');
   const nuevaLeccion = document.createElement('div');
-  nuevaLeccion.className = 'leccion col';
+  nuevaLeccion.className = 'leccion row';
   nuevaLeccion.innerHTML = `
-    <div class="col-md-9 mx-1 bg-dark text-light p-3 rounded">
+    <div class="col-md-9 mx-1 bg-dark p-3 rounded">
         <div class="form-group mb-3" >
             <label for="titulo_leccion" class="form-label">Título de la lección</label>
             <input type="text" class="form-control" name="titulo_leccion[]" placeholder="Título de la lección" required>
@@ -145,3 +145,30 @@ function obtenerDatosUsuario(idUsuario) {
 
 // Llamar a la función cuando el usuario ingresa a la página
 obtenerDatosUsuario(usuarioId); // Reemplaza "usuarioId" con el ID del usuario que ingresa a la página
+
+// Función para confirmar la eliminación de la cuenta
+function confirmarEliminarCuenta() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+}
+
+// Función para cerrar el modal de confirmación
+function cerrarModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+}
+
+// Función para procesar la eliminación de la cuenta
+function eliminarCuenta() {
+  // Aquí puedes agregar la lógica para enviar una solicitud al servidor para eliminar la cuenta
+  console.log("La cuenta ha sido eliminada."); // Ejemplo de mensaje de consola
+  // Después de eliminar la cuenta, podrías redirigir al usuario a una página de despedida o cerrar sesión automáticamente
+}
+
+// Función para cargar el proyecto
+function cargarProyecto() {
+  var proyecto = document.getElementById("proyectoTextArea").value;
+  // Aquí puedes agregar la lógica para enviar el proyecto al servidor para su procesamiento
+  console.log("Proyecto cargado:", proyecto); // Ejemplo de mensaje de consola
+  // Después de cargar el proyecto, podrías mostrar un mensaje de éxito al usuario
+}

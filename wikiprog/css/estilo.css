@@ -34,9 +34,8 @@ body {
   
 }
 .leccion {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 16px;
+  
+  padding: 10px;
   border-radius: 8px;
   width: calc(33.333% - 32px);
   box-sizing: border-box;
