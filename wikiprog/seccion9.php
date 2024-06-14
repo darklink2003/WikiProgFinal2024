@@ -1,6 +1,6 @@
 <?php
-// Verificar si la sesión ya está iniciada
-if (session_status() == PHP_SESSION_NONE) {
+// Inicia la sesión si no está activa
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
@@ -11,11 +11,12 @@ if (!isset($_SESSION['usuario_id'])) {
 }
 
 // Conexión a la base de datos
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname = "wikiprog"; 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "wikiprog";
 
+// Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar la conexión
@@ -28,7 +29,6 @@ $usuario_id = $_SESSION['usuario_id'];
 
 // Consulta SQL para obtener los datos del usuario
 $sql = "SELECT * FROM usuario WHERE usuario_id = $usuario_id";
-
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
