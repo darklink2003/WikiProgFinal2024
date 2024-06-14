@@ -3,7 +3,6 @@
 class Login
 {
     private $conexion;
-
     public function __construct()
     {
         // Conexión a la base de datos
@@ -14,7 +13,6 @@ class Login
             die("Error de conexión: " . $this->conexion->connect_error);
         }
     }
-
     public function registrarUsuario($usuario, $correo, $contraseña, $rango_id)
     {
         // Preparar la consulta para evitar inyecciones SQL
@@ -40,7 +38,6 @@ class Login
         // Cerrar la declaración
         // $stmt->close();
     }
-
     public function registrarCurso($curso_id, $titulo_curso, $descripcion, $categoria_id)
     {
         // Preparar la consulta para evitar inyecciones SQL
@@ -63,12 +60,10 @@ class Login
         // Cerrar la declaración
         // $stmt->close();
     }
-
     public function __destruct()
     {
         // Cerrar la conexión
         $this->conexion->close();
     }
 }
-
 ?>

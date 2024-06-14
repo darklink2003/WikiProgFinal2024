@@ -20,10 +20,10 @@
                                 <input type="text" class="form-control ms-2" id="busqueda">
                             </div>
                         </div>
-                        <div class="col-md-2" style="display: flex; padding-left:10px">
+                        <div class="col-md-2" style="display: flex; padding-left:10px; height:40px;">
                             <a href="#" class="btn btn-primary">Cargar ▼</a>
                         </div>
-                        <div class="col-md-2" style="display: flex;">
+                        <div class="col-md-2" style="display: flex; height:40px;">
                             <a href="#" class="btn btn-primary">Nuevo ▼</a>
                         </div>
                     </div>

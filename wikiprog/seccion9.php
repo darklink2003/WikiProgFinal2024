@@ -1,11 +1,21 @@
 <?php
-// Conexión a la base de datos
-$servername = "localhost"; // Cambia localhost por tu servidor de base de datos si es diferente
-$username = "root"; // Cambia tu_usuario por tu nombre de usuario de MySQL
-$password = ""; // Cambia tu_contraseña por tu contraseña de MySQL
-$dbname = "wikiprog"; // Cambia wikiprog por el nombre de tu base de datos
+// Verificar si la sesión ya está iniciada
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Crear conexión
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: controlador.php?seccion=seccion2&error=not_logged_in");
+    exit();
+}
+
+// Conexión a la base de datos
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "wikiprog"; 
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar la conexión
@@ -13,14 +23,17 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
+// Obtener el usuario_id de la sesión
+$usuario_id = $_SESSION['usuario_id'];
+
 // Consulta SQL para obtener los datos del usuario
-$sql = "SELECT * FROM usuario WHERE usuario_id = 16"; // Cambia el valor 1 por el ID del usuario que deseas mostrar
+$sql = "SELECT * FROM usuario WHERE usuario_id = $usuario_id";
 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Mostrar los datos del usuario
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         echo "<div class='container'>";
         echo "<div class='container_titulo'>";
         echo "<div class='row'>";
@@ -29,12 +42,11 @@ if ($result->num_rows > 0) {
         echo "</div>";
         echo "<div class='col-md-3'>";
         echo "<p>Nombre de usuario: " . $row["usuario"] . "</p><br>";
-        // Aquí podrías mostrar más campos como el correo electrónico, la biografía, etc.
-        echo "<p>Rango: " . $row["rango_id"] . "</p>"; // Aquí muestro el ID del rango, puedes cambiarlo por el nombre del rango si lo deseas
+        echo "<p>Rango: " . $row["rango_id"] . "</p>";
         echo "</div>";
         echo "<div class='col-md-3'>";
-        echo "<p>Seguidores: 0</p>"; // Aquí podrías mostrar el número real de seguidores
-        echo "<p style='padding-left: 5px;'>Siguiendo: 0</p>"; // Aquí podrías mostrar el número real de usuarios seguidos
+        echo "<p>Seguidores: 0</p>"; 
+        echo "<p style='padding-left: 5px;'>Siguiendo: 0</p>";
         echo "</div>";
         echo "<div class='col-md-3'>";
         echo "<button type='button' id='eliminarCuentaBtn' onclick='confirmarEliminarCuenta()'>Eliminar Cuenta</button>";
@@ -57,7 +69,6 @@ if ($result->num_rows > 0) {
         echo "<h5 style='color: white;'>Información del usuario</h5>";
         echo "</div>";
         echo "<div class='col-md-9'>";
-        // Aquí podrías mostrar más información del usuario si lo deseas
         echo "</div>";
         echo "</div>";
         echo "</div>";
@@ -68,7 +79,6 @@ if ($result->num_rows > 0) {
         echo "<h5 style='color: white; text-align: center;'>Datos</h5>";
         echo "<p style='color: white;'>Biografía: " . $row["biografia"] . "</p>";
         echo "<p style='color: white;'>Correo : " . $row["correo"] . "</p>";
-        // Aquí podrías mostrar más datos del usuario si lo deseas
         echo "</div>";
         echo "</div>";
         echo "<div class='col-md-7 d-flex flex-column align-items-center'>";
