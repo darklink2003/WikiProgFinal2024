@@ -146,29 +146,3 @@ function obtenerDatosUsuario(idUsuario) {
 // Llamar a la función cuando el usuario ingresa a la página
 obtenerDatosUsuario(usuarioId); // Reemplaza "usuarioId" con el ID del usuario que ingresa a la página
 
-// Función para confirmar la eliminación de la cuenta
-function confirmarEliminarCuenta() {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "block";
-}
-
-// Función para cerrar el modal de confirmación
-function cerrarModal() {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "none";
-}
-
-// Función para procesar la eliminación de la cuenta
-function eliminarCuenta() {
-  // Aquí puedes agregar la lógica para enviar una solicitud al servidor para eliminar la cuenta
-  console.log("La cuenta ha sido eliminada."); // Ejemplo de mensaje de consola
-  // Después de eliminar la cuenta, podrías redirigir al usuario a una página de despedida o cerrar sesión automáticamente
-}
-
-// Función para cargar el proyecto
-function cargarProyecto() {
-  var proyecto = document.getElementById("proyectoTextArea").value;
-  // Aquí puedes agregar la lógica para enviar el proyecto al servidor para su procesamiento
-  console.log("Proyecto cargado:", proyecto); // Ejemplo de mensaje de consola
-  // Después de cargar el proyecto, podrías mostrar un mensaje de éxito al usuario
-}
