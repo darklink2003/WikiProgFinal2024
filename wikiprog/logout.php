@@ -1,9 +1,8 @@
 <?php
 session_start();
-session_unset(); // Unset all of the session variables
-session_destroy(); // Destroy the session
+session_unset(); // Desactivar todas las variables de sesión
+session_destroy(); // Destruye las sesiones
 
-// Redirect to login page or home page
 header("Location: controlador.php?seccion=seccion2");
 exit();
 ?>

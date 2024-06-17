@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
         echo "</div>";
         echo "<div class='col-md-3'>";
         echo "<button type='button' id='eliminarCuentaBtn' onclick='confirmarEliminarCuenta()'>Eliminar Cuenta</button>";
-        echo "<button type='button' style='margin-left: 5px;'><a href='actualizar_perfil.html' style='text-decoration: none ;color: white;'>Editar Perfil</a></button>";
+        echo "<button type='button' style='margin-left: 5px;'><a href='controlador.php?seccion=seccion10' style='text-decoration: none ;color: white;'>Editar Perfil</a></button>";
         echo "</div>";
         echo "<div id='myModal' class='modal'>";
         echo "<div class='modal-content'>";

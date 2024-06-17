@@ -5,6 +5,7 @@ $descripcion = $_POST['descripcion'];
 $categoria_id = $_POST['categoria'];
 $titulos_leccion = $_POST['titulo_leccion'];
 $contenidos_leccion = $_POST['contenido_leccion'];
+$archivos_leccion = $_FILES['archivo_leccion']; // Array de archivos
 
 // Conexión a la base de datos
 $conexion = new mysqli('localhost', 'root', '', 'wikiprog');
@@ -27,6 +28,31 @@ if ($stmt_categoria->num_rows == 0) {
 }
 $stmt_categoria->close();
 
+// Directorio donde se guardarán los archivos de lección
+$uploadDir = 'archivos_leccion/';
+
+// Verificar y mover cada archivo de lección
+$archivos_leccion_paths = array(); // Para almacenar rutas de los archivos subidos
+
+foreach ($archivos_leccion['tmp_name'] as $index => $tmpName) {
+    $titulo_leccion = $titulos_leccion[$index];
+    $contenido_leccion = $contenidos_leccion[$index];
+    $archivo_name = $archivos_leccion['name'][$index];
+    $archivo_tmp_name = $archivos_leccion['tmp_name'][$index];
+    $archivo_size = $archivos_leccion['size'][$index];
+    $archivo_type = $archivos_leccion['type'][$index];
+
+    // Generar un nombre único para el archivo
+    $archivo_path = $uploadDir . uniqid() . '_' . $archivo_name;
+
+    // Mover el archivo a la carpeta de archivos de lección
+    if (move_uploaded_file($archivo_tmp_name, $archivo_path)) {
+        $archivos_leccion_paths[] = $archivo_path;
+    } else {
+        echo "Error al subir el archivo '$archivo_name'.";
+    }
+}
+
 // Iniciar una transacción
 $conexion->begin_transaction();
 
@@ -47,7 +73,7 @@ try {
     $curso_id = $conexion->insert_id;
 
     // Insertar los datos en la tabla lección
-    $sql_leccion = "INSERT INTO leccion (curso_id, titulo_leccion, contenido) VALUES (?, ?, ?)";
+    $sql_leccion = "INSERT INTO leccion (curso_id, titulo_leccion, contenido, archivo_leccion) VALUES (?, ?, ?, ?)";
     $stmt_leccion = $conexion->prepare($sql_leccion);
     if (!$stmt_leccion) {
         throw new Exception("Error en la preparación de la consulta de lección: " . $conexion->error);
@@ -56,7 +82,9 @@ try {
     // Iterar sobre las lecciones y guardarlas
     foreach ($titulos_leccion as $index => $titulo_leccion) {
         $contenido_leccion = $contenidos_leccion[$index];
-        $stmt_leccion->bind_param("iss", $curso_id, $titulo_leccion, $contenido_leccion);
+        $archivo_leccion = $archivos_leccion_paths[$index]; // Obtener la ruta del archivo
+
+        $stmt_leccion->bind_param("isss", $curso_id, $titulo_leccion, $contenido_leccion, $archivo_leccion);
         $stmt_leccion->execute();
         if ($stmt_leccion->errno) {
             throw new Exception("Error en la ejecución de la consulta de lección: " . $stmt_leccion->error);
@@ -65,7 +93,6 @@ try {
 
     // Confirmar la transacción
     $conexion->commit();
-    //echo "Curso y lecciones guardados exitosamente.";
     // Redirigir a otra página si es necesario
     header("Location: index.php");
 } catch (Exception $e) {
