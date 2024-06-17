@@ -39,10 +39,11 @@ DROP TABLE IF EXISTS `archivo`;
 CREATE TABLE `archivo` (
   `archivo_id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
+  `nombre_archivo` varchar(45) DEFAULT NULL,
   `tamaño` varchar(45) DEFAULT NULL,
   `privacidad_id` int(11) NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `archivo` longtext NOT NULL,
   PRIMARY KEY (`archivo_id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `privacidad_id` (`privacidad_id`),
@@ -72,7 +73,7 @@ CREATE TABLE `categoria` (
   `descripcion` varchar(45) NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`categoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +82,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'Codigo','2024-05-31 21:36:38'),(2,'Logica del programador','2024-05-31 21:36:38'),(3,'Estilo','2024-05-31 21:36:38'),(4,'Base de datos','2024-05-31 21:36:38'),(5,'otro','2024-05-31 21:36:38');
+INSERT INTO `categoria` VALUES (1,'Codigo','2024-05-31 21:36:38'),(2,'Logica del programador','2024-05-31 21:36:38'),(3,'Estilo','2024-05-31 21:36:38'),(4,'Base de datos','2024-05-31 21:36:38'),(5,'otro','2024-05-31 21:36:38'),(6,'jax','2024-06-12 17:21:57');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +161,7 @@ CREATE TABLE `curso` (
   PRIMARY KEY (`curso_id`),
   KEY `categoria_id` (`categoria_id`),
   CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`categoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +170,7 @@ CREATE TABLE `curso` (
 
 LOCK TABLES `curso` WRITE;
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-INSERT INTO `curso` VALUES (20,'html','programar',1,'2024-06-04 16:32:37',0,0),(21,'php','PHP es un lenguaje de programación interpreta',2,'2024-06-04 16:32:58',0,0),(22,'css','estilo',3,'2024-06-04 16:33:13',0,0),(23,'jax','union ',2,'2024-06-04 17:11:49',0,0);
+INSERT INTO `curso` VALUES (26,'html','programar',1,'2024-06-06 15:14:26',0,0),(27,'asdw','qweqwe',1,'2024-06-11 15:38:56',0,0),(28,'motos','rapidos',5,'2024-06-11 15:55:11',0,0),(29,'matematicas','numero y cosas',5,'2024-06-17 12:36:47',0,0),(32,'español','lenguaje',5,'2024-06-17 12:44:49',0,0),(33,'informaticas','compus',1,'2024-06-17 12:59:46',0,0);
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,12 +215,13 @@ CREATE TABLE `leccion` (
   `leccion_id` int(11) NOT NULL AUTO_INCREMENT,
   `curso_id` int(11) NOT NULL,
   `titulo_leccion` varchar(255) NOT NULL,
-  `contenido` longblob NOT NULL,
+  `contenido` varchar(255) NOT NULL,
+  `archivo_leccion` varchar(255) DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`leccion_id`),
   KEY `curso_id` (`curso_id`),
   CONSTRAINT `leccion_ibfk_1` FOREIGN KEY (`curso_id`) REFERENCES `curso` (`curso_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +230,7 @@ CREATE TABLE `leccion` (
 
 LOCK TABLES `leccion` WRITE;
 /*!40000 ALTER TABLE `leccion` DISABLE KEYS */;
-INSERT INTO `leccion` VALUES (16,20,'inicio',_binary 'asdasd','2024-06-04 16:32:37'),(17,20,'diseñar',_binary 'sadadasd','2024-06-04 16:32:37'),(18,21,'por que',_binary 'asdfafq','2024-06-04 16:32:58'),(19,22,'biblia',_binary 'fqwer','2024-06-04 16:33:13'),(20,23,'por que',_binary '4646456','2024-06-04 17:11:49');
+INSERT INTO `leccion` VALUES (23,26,'inicio','crea tu pagina',NULL,'2024-06-06 15:14:26'),(24,27,'45654645654','456456456456',NULL,'2024-06-11 15:38:56'),(25,28,'fiau','veloz',NULL,'2024-06-11 15:55:11'),(26,28,'harry','',NULL,'2024-06-12 13:10:04'),(27,29,'suma','esta',NULL,'2024-06-17 12:36:47'),(28,29,'resta','con esta ',NULL,'2024-06-17 12:36:47'),(29,32,'letras','y numeor','archivos_leccion/66702fc11f6ae_logica.txt','2024-06-17 12:44:49'),(30,33,'teclado','numerico','archivos_leccion/6670334290376_wikiprog.sql','2024-06-17 12:59:46'),(31,33,'mouse','mover','archivos_leccion/66703342905f9_export1667333521277.mdp','2024-06-17 12:59:46');
 /*!40000 ALTER TABLE `leccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,6 +349,7 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario` varchar(45) NOT NULL,
+  `img_usuario` varchar(45) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `biografia` varchar(45) NOT NULL,
   `contraseña` varchar(45) NOT NULL,
@@ -355,7 +358,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`usuario_id`),
   KEY `rango_id` (`rango_id`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rango_id`) REFERENCES `rango` (`rango_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,7 +367,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (13,'julio','julio@gmail.com','soy un programador','$2y$10$op1Fz3xK.R2t9WTdqXqG2eD7aGw5454.pb9p3.',1,'2024-06-04 21:17:56'),(14,'marzo','marzo@gmail.com','marzo','marzo2000',1,'2024-06-04 21:20:05'),(15,'keiner','keiner@gmail.com','puto','keinerputo',1,'2024-06-05 12:29:31');
+INSERT INTO `usuario` VALUES (13,'julio','','julio@gmail.com','soy un programador','$2y$10$op1Fz3xK.R2t9WTdqXqG2eD7aGw5454.pb9p3.',1,'2024-06-04 21:17:56'),(14,'marzo','','marzo@gmail.com','marzo','marzo2000',1,'2024-06-04 21:20:05'),(15,'keiner','','keiner@gmail.com','puto','keinerputo',1,'2024-06-05 12:29:31'),(16,'mike','','mike@gmail.com','soy un programador','mike2003',1,'2024-06-11 16:39:27'),(17,'pablo','','pablomondragonacevedo@gmail.com','administrador ','darklink',2,'2024-06-16 14:27:30');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -426,4 +429,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-05  7:32:12
+-- Dump completed on 2024-06-17  8:07:24
