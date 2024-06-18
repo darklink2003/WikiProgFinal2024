@@ -28,8 +28,11 @@ if ($conn->connect_error) {
 $usuario_id = $_SESSION['usuario_id'];
 
 // Consulta SQL para obtener los datos del usuario
-$sql = "SELECT * FROM usuario WHERE usuario_id = $usuario_id";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM usuario WHERE usuario_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     // Mostrar los datos del usuario
@@ -49,14 +52,16 @@ if ($result->num_rows > 0) {
         echo "<p style='padding-left: 5px;'>Siguiendo: 0</p>";
         echo "</div>";
         echo "<div class='col-md-3'>";
-        echo "<button type='button' id='eliminarCuentaBtn' onclick='confirmarEliminarCuenta()'>Eliminar Cuenta</button>";
-        echo "<button type='button' style='margin-left: 5px;'><a href='controlador.php?seccion=seccion10' style='text-decoration: none ;color: white;'>Editar Perfil</a></button>";
+        echo "<button type='button' id='eliminarCuentaBtn' onclick='abrirModal()'>Eliminar Cuenta</button>";
+        echo "<button type='button' style='margin-left: 5px;'><a href='controlador.php?seccion=seccion10' style='text-decoration: none; color: white;'>Editar Perfil</a></button>";
         echo "</div>";
         echo "<div id='myModal' class='modal'>";
         echo "<div class='modal-content'>";
         echo "<span class='close' onclick='cerrarModal()'>&times;</span>";
         echo "<p>¿Seguro que quieres eliminar la cuenta?</p>";
-        echo "<button id='siBtn' onclick='eliminarCuenta()'>Sí</button>";
+        echo "<form method='POST' action='eliminar_perfil.php'>";
+        echo "<button type='submit' id='siBtn'>Sí</button>";
+        echo "</form>";
         echo "<button id='noBtn' onclick='cerrarModal()'>No</button>";
         echo "</div>";
         echo "</div>";
@@ -95,5 +100,16 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 resultados";
 }
+
+$stmt->close();
 $conn->close();
 ?>
+<script>
+function abrirModal() {
+    document.getElementById('myModal').style.display = "block";
+}
+
+function cerrarModal() {
+    document.getElementById('myModal').style.display = "none";
+}
+</script>
