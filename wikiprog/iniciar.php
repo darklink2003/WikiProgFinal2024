@@ -1,4 +1,24 @@
 <?php
+/**
+ * Inicia sesión de usuario según los datos proporcionados y redirige según el resultado.
+ * 
+ * Este script inicia sesión de usuario mediante el uso de datos recibidos por POST (nombre de usuario y contraseña).
+ * Verifica la conexión a la base de datos, protege contra inyecciones SQL utilizando real_escape_string,
+ * y ejecuta una consulta para verificar la existencia del usuario en la base de datos.
+ * Si el usuario existe, se inicia una sesión y se redirige a la sección especificada o a una por defecto.
+ * En caso contrario, se redirige a una página de inicio de sesión con mensaje de error.
+ * 
+ * Variables POST esperadas:
+ * - $_POST['username']: Nombre de usuario para autenticación.
+ * - $_POST['password']: Contraseña asociada al nombre de usuario.
+ * - $_POST['seccion']: Sección a la que redirigir después del inicio de sesión (opcional, por defecto 'seccion1').
+ * 
+ * @version 1.0
+ * @package Login
+ * @author Pablo Alexander Mondragon Acevedo
+ * @author Keiner Yamith Tarache Parra
+ */
+
 session_start();
 
 // Conexión a la base de datos (ya existente)

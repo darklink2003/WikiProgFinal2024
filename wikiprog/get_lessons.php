@@ -1,4 +1,18 @@
 <?php
+/**
+ * Consulta y devuelve las lecciones asociadas a un curso específico en formato JSON.
+ * 
+ * Este script realiza una conexión a la base de datos MySQL ('wikiprog'), verifica la conexión,
+ * y obtiene el ID del curso desde la solicitud GET. Luego, prepara una consulta para seleccionar
+ * todas las lecciones asociadas al curso_id proporcionado. Si la preparación de la consulta es
+ * exitosa, ejecuta la consulta, obtiene los resultados y los devuelve en formato JSON.
+ * En caso de error, devuelve un mensaje de error en formato JSON.
+ *
+ * @version 1.0
+ * @author Pablo Alexander Mondragon Acevedo
+ * @author Keiner Yamith Tarache Parra
+ */
+
 // Conexión a la base de datos wikiprog
 $conexion = mysqli_connect("localhost", "root", "", "wikiprog");
 
@@ -25,13 +39,16 @@ if ($stmt) {
         $lecciones[] = $leccion;
     }
 
-    // Devolver los datos en formato JSON
+    // Establecer encabezado para indicar que se devolverá JSON
     header('Content-Type: application/json');
+
+    // Devolver los datos en formato JSON
     echo json_encode($lecciones);
 
     // Cerrar el statement
     mysqli_stmt_close($stmt);
 } else {
+    // Devolver un mensaje de error en formato JSON si la preparación de la consulta falla
     echo json_encode(array('error' => 'Error en la preparación de la consulta: ' . mysqli_error($conexion)));
 }
 

@@ -1,4 +1,4 @@
-<?php
+z<?php
 // Inicia la sesión si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

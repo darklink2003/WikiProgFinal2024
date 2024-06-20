@@ -1,4 +1,18 @@
 <?php
+/**
+ * Procesa el formulario para agregar un nuevo curso con sus respectivas lecciones y archivos.
+ * 
+ * Este script recibe datos del formulario POST para agregar un nuevo curso a la base de datos 'wikiprog'.
+ * Verifica la existencia de la categoría seleccionada, sube los archivos de lección al servidor,
+ * inicia una transacción para asegurar la integridad de los datos y realiza inserciones en las tablas
+ * 'curso' y 'leccion'. Si ocurre algún error durante la inserción, revierte la transacción y muestra
+ * un mensaje de error.
+ *
+ * @version 1.0
+ * @author Pablo Alexander Mondragon Acevedo
+ * @author Keiner Yamith Tarache Parra
+ */
+
 // Obtener los datos del formulario
 $titulo_curso = $_POST['titulo_curso'];
 $descripcion = $_POST['descripcion'];

@@ -1,13 +1,30 @@
 <?php
+/**
+ * Controlador principal de la aplicación.
+ *
+ * Este archivo gestiona el enrutamiento y la seguridad de las secciones del sitio web.
+ *
+ * PHP version 7.4
+ *
+ * @category Controlador
+ * @package  WikiProg
+ * @version  1.0
+ * @author   Pablo Alexander Mondragon Acevedo
+ *           Keiner Yamith Tarache Parra
+ */
+
+// Iniciar la sesión si no está iniciada
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$seccion = $_GET['seccion'] ?? 'seccion1'; // Default section
+// Obtener la sección de la URL, si no está presente, se usa 'seccion1' como predeterminada
+$seccion = $_GET['seccion'] ?? 'seccion1';
+// Obtener el ID de usuario de la sesión, si no está iniciada, se establece como vacío
 $usuario_id = $_SESSION['usuario_id'] ?? '';
 
-// Redirect to login page if not logged in and trying to access a restricted section
-$public_sections = ['seccion5', 'seccion2']; // Add public sections here
+// Redirigir a la página de inicio de sesión si no ha iniciado sesión y trata de acceder a una sección restringida
+$public_sections = ['seccion5', 'seccion2']; // Agregar aquí las secciones públicas
 if (empty($usuario_id) && !in_array($seccion, $public_sections)) {
     header("Location: controlador.php?seccion=seccion2");
     exit();
@@ -24,14 +41,14 @@ if (empty($usuario_id) && !in_array($seccion, $public_sections)) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Le styles -->
+    <!-- Estilos -->
     <link rel="icon" href="css/img/logo.png" type="image/png">
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GQJG3209SE"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -112,20 +129,20 @@ if (empty($usuario_id) && !in_array($seccion, $public_sections)) {
             </div>
         </nav>
     <?php endif; ?>
-    <!-- Se declara un contenedor fila y después un contenedor columna. Las columnas deben sumar 12, según la rejilla Bootstrap. -->
+    
     <!-- Contenido de la sección -->
     <div class="container" style="margin-top:40px;">
         <?php include ($seccion . ".php"); ?>
     </div>
 
-    <br><br><br>
+    <!-- Pie de página -->
     <div class="container">
         <footer>
             <p>© WikiProg 2024</p>
         </footer>
     </div>
 
-    <!-- Le javascript -->
+    <!-- JavaScript -->
     <script src="js/perfil.js"></script>
     <script src="js/funciones.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

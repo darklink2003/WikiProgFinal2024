@@ -1,12 +1,30 @@
+<!--
+/**
+ * Formulario para la creación y edición de cursos.
+ *
+ * Este formulario permite a los usuarios ingresar información para crear
+ * o editar un curso en el sistema. Se proporcionan campos para ingresar
+ * el título del curso, una descripción, seleccionar una categoría y agregar
+ * lecciones dinámicamente. Al enviar el formulario, los datos se envían
+ * al archivo "guardar_curso.php" mediante el método POST para su procesamiento.
+ * 
+ * @version 1.0
+ * @author Pablo Alexander Mondragon Acevedo
+ *         Keiner Yamith Tarache Parra
+ */
+-->
 <div class="contenedor_descripcion">
     <form action="guardar_curso.php" method="POST" enctype="multipart/form-data">
+        <!-- Encabezado del formulario -->
         <div class="row" style="height:100px;background-color: #1a1924; border-radius:15px;">
+            <!-- Columna izquierda para título y descripción -->
             <div class="col-md-8 d-flex justify-content-center align-items-center">
                 <input type="text" name="titulo_curso" placeholder="Título del curso" required class="form-control"
                     style=" border-radius: 10px;">
                 <input type="text" name="descripcion" placeholder="Descripción" class="form-control"
                     style="margin-left:10px; border-radius: 10px;" required>
             </div>
+            <!-- Columna derecha para selección de categoría y botón de eliminar curso -->
             <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <select name="categoria" required class="form-select"
                     style="background-color: #1a1924; color: white; border-radius: 10px;">
@@ -37,6 +55,7 @@
         </div>
 
         <br>
+        <!-- Contenedor de lecciones -->
         <div class="contenedorleccion"
             style="display: flex; flex-wrap: wrap; background-color:#1a1924; border-radius:10px; padding: 10px;">
             <div class="row">
@@ -53,6 +72,7 @@
             </div>
         </div>
 
+        <!-- Botón de envío del formulario -->
         <input type="submit" value="Enviar" class="btn btn-success">
     </form>
 </div>

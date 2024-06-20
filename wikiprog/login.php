@@ -1,8 +1,33 @@
 <?php
-
+/**
+ * Clase Login para gestionar operaciones relacionadas con usuarios y cursos en la base de datos.
+ * 
+ * Esta clase facilita la gestión de operaciones CRUD relacionadas con usuarios y cursos en la base de datos.
+ * Utiliza métodos para registrar nuevos usuarios y cursos, utilizando consultas preparadas para prevenir
+ * inyecciones SQL. También maneja la conexión y desconexión de la base de datos.
+ * 
+ * Requiere una conexión válida a la base de datos al ser instanciada.
+ * 
+ * @property mysqli $conexion Conexión activa a la base de datos.
+ * 
+ * @version 1.0
+ * @package Login
+ * @author Pablo Alexander Mondragon Acevedo
+ *          Keiner Yamith Tarache Parra
+ */
 class Login
 {
+    /**
+     * @var mysqli $conexion Conexión a la base de datos.
+     */
     private $conexion;
+
+    /**
+     * Constructor de la clase Login.
+     * 
+     * Establece la conexión a la base de datos al ser instanciada la clase.
+     * Si hay un error en la conexión, muestra un mensaje de error y termina la ejecución.
+     */
     public function __construct()
     {
         // Conexión a la base de datos
@@ -13,6 +38,17 @@ class Login
             die("Error de conexión: " . $this->conexion->connect_error);
         }
     }
+
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     * 
+     * @param string $usuario Nombre de usuario.
+     * @param string $correo Correo electrónico del usuario.
+     * @param string $contraseña Contraseña del usuario (se almacenará hasheada en la base de datos).
+     * @param int $rango_id ID del rango del usuario.
+     * 
+     * @return void
+     */
     public function registrarUsuario($usuario, $correo, $contraseña, $rango_id)
     {
         // Preparar la consulta para evitar inyecciones SQL
@@ -36,8 +72,19 @@ class Login
         }
 
         // Cerrar la declaración
-        // $stmt->close();
+       // $stmt->close();
     }
+
+    /**
+     * Registra un nuevo curso en la base de datos.
+     * 
+     * @param int $curso_id ID del curso.
+     * @param string $titulo_curso Título del curso.
+     * @param string $descripcion Descripción del curso.
+     * @param int $categoria_id ID de la categoría del curso.
+     * 
+     * @return void
+     */
     public function registrarCurso($curso_id, $titulo_curso, $descripcion, $categoria_id)
     {
         // Preparar la consulta para evitar inyecciones SQL
@@ -58,8 +105,16 @@ class Login
         }
 
         // Cerrar la declaración
-        // $stmt->close();
+      //  $stmt->close();
     }
+
+    /**
+     * Destructor de la clase Login.
+     * 
+     * Cierra la conexión a la base de datos al destruirse la instancia de la clase.
+     * 
+     * @return void
+     */
     public function __destruct()
     {
         // Cerrar la conexión
