@@ -19,7 +19,7 @@
           <p
             style="padding-left: 20px;margin-right: 10px; background-color: #4f40fa;border-radius: 5px;height: 100%;color:white;padding:10px">
             Nivel:alto</p>
-          <a href="index.html"
+          <a href="controlador.php?seccion=seccion1"
             style="padding-left: 20px;background-color: #4f40fa;border-radius: 5px;height: 100%;color:white;padding:10px;text-decoration: none;">Finalizar
           </a>
 

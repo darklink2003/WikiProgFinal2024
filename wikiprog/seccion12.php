@@ -19,7 +19,7 @@ if (!isset($_SESSION['usuario_id'])) {
                             TU NUBE
                         </h1>
                         <hr>
-                        <a href="index.html" class="enlace">Inicio</a><br>
+                        <a href="controlador.php?seccion=seccion1" class="enlace">Inicio</a><br>
                         <a href="#" class="enlace">Mis Archivos</a><br>
                         <a href="#" class="enlace">Mis Cursos</a><br>
                     </div>
