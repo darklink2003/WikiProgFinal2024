@@ -1,6 +1,6 @@
 // cursos de inicio
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('get_courses.php')
+  fetch('../model/get_courses.php')
       .then(response => response.json())
       .then(data => {
           const cursosContainer = document.getElementById('cursos-container');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
               cursoDiv.querySelector('.descripcion-curso').textContent = curso.descripcion;
               cursoDiv.querySelector('.like-button').onclick = () => likeCurso(cursoDiv);
               cursoDiv.querySelector('.dislike-button').onclick = () => dislikeCurso(cursoDiv);
-              cursoDiv.querySelector('.ver-lecciones-link').href = `seccion7.php?curso_id=${curso.curso_id}`;
+              cursoDiv.querySelector('.ver-lecciones-link').href = `../view/seccion7.php?curso_id=${curso.curso_id}`;
 
               cursosContainer.appendChild(cursoDiv);
           });
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // cargar lecciones
 function cargarLecciones(cursoId) {
-  fetch(`get_lessons.php?curso_id=${cursoId}`)
+  fetch(`../model/get_lessons.php?curso_id=${cursoId}`)
       .then(response => response.json())
       .then(data => {
           const leccionesContainer = document.getElementById('lecciones-container');
@@ -63,7 +63,7 @@ function cargarLecciones(cursoId) {
 
 // agregar leccion 
 function cargarLecciones(cursoId) {
-  fetch(`get_lessons.php?curso_id=${cursoId}`)
+  fetch(`../model/get_lessons.php?curso_id=${cursoId}`)
       .then(response => response.json())
       .then(data => {
           const leccionesContainer = document.getElementById('lecciones-container');
